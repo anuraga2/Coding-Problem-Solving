@@ -1,0 +1,64 @@
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+
+
+x1 = [1,3,8,9,15]
+y1 = [7,11,18,19,21,25]
+
+
+# The condition below flips the input vectors based on length
+if len(x1) <= len(y1):
+    x = x1
+    y = y1
+else:
+    x = y1
+    y = x1
+
+
+# Defining start and end of partition
+start = 0
+end = len(x)
+
+loop_var = True
+
+while loop_var:
+
+    
+    # creating markers where we will partition x and y
+    partitonx = int((start + end)/2)
+    print(partitonx)
+    partitiony = int((len(x) + len(y) + 1)/2)
+    print(partitiony)
+    
+    # creating the left and right side partitions of the x and y vectors
+    xleft = x[0:partitonx]
+    xright = x[partitonx:]
+    yleft = y[0:partitiony]
+    yright = y[partitiony:]
+    
+    # accounting for the edge cases where partitioning the list will result in an empty list
+    if not xleft:
+        xleft.append(float('-inf'))
+    
+    if not yleft:
+        yleft.append(float('-inf'))
+    
+    if not xright:
+        xright.append(float('inf'))
+    
+    if not yright:
+        yright.append(float('inf'))
+    
+    # Checking for the median condition
+    if max(xleft) < min(yright) and max(yleft) < min(xright):
+        if (len(x)+len(y))%2 == 0:
+            print((max(xleft[-1],yleft[-1]) + min(xright[0],yright[0]))/2)
+        else:
+            print(max(xleft[-1],yleft[-1]))
+        
+        loop_var = False
+    elif max(xleft) > min(yright):
+        end = partitonx - 1
+    elif max(yleft) > min(xright):
+        start = partitonx+1
+

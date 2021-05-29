@@ -1,0 +1,19 @@
+lst = [1,1,2,2,30,30,43,1,1]
+
+
+def oddelement(lst):
+    
+    res = 0
+    i = 0
+    for item in lst:
+        res = res ^ item
+        i = i+1
+        if(i > 0 & res!= 0):
+            break
+        
+    
+    return(res)
+    
+
+
+print(oddelement(lst))
